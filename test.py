@@ -1,9 +1,14 @@
-a = [1,2,3]
-print(a[1])
-print(a[2])
-print(a[1])
-print(a[2])
-print(a[1])
-print(a[2])
-print(a[1])
-print(a[2])
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+dp = [0] * (10**6+1)
+
+for i in range(2, n + 1):
+    dp[i] = dp[i - 1] + 1
+    if i % 2 == 0:
+        dp[i] = min(dp[int(i / 2)] + 1, dp[i])
+    if i % 3 == 0:
+        dp[i] = min(dp[int(i / 3)] + 1, dp[i])
+
+print(dp[n])
